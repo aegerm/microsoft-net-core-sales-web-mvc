@@ -1,0 +1,32 @@
+@model sales_web_mvc.Models.Department
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Delete</h3>
+
+<h3>Você deseja realmente excluir esse registro</h3>
+
+<div>
+    <h4>Departamento</h4>
+    <hr />
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" />
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
