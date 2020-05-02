@@ -33,12 +33,14 @@ namespace SalesWeb
             services.AddDbContext<SalesWebContext>(options => options.UseNpgsql(Configuration.GetConnectionString("SalesWebContext"), builder => builder.MigrationsAssembly("SalesWeb")));
             services.AddControllersWithViews();
             
+            services.AddScoped<SeedingService>();
             services.AddScoped<SellerService>();
             services.AddScoped<DepartmentService>();
+            services.AddScoped<SalesRecordService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedingService seedingService)
         {
             var enUs = new CultureInfo("en-US");
 
@@ -54,6 +56,8 @@ namespace SalesWeb
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
+                seedingService.Seed();
             }
 
             else
