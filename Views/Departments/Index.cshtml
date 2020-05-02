@@ -10,12 +10,8 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th scope="col">
-                #
-            </th>
-            <th scope="col">
-                Nome do Departamento
-            </th>
+            <th scope="col">#</th>
+            <th scope="col">Nome do Departamento</th>
             <th></th>
         </tr>
     </thead>
@@ -23,12 +19,8 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
                 <td>
                     <a asp-action="Edit" asp-route-Id="@item.Id">Editar</a> |
                     <a asp-action="Details" asp-route-Id="@item.Id">Detalhes</a> |
