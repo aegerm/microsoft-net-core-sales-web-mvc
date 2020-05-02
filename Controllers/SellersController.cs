@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using sales_web_mvc.Models;
 using sales_web_mvc.Models.ViewModels;
 using sales_web_mvc.Services;
 using sales_web_mvc.Services.Exceptions;
+using SalesWeb.Models.ViewModels;
 
 namespace sales_web_mvc.Controllers
 {
@@ -50,14 +52,14 @@ namespace sales_web_mvc.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var value = _service.FinById(id.Value);
 
             if (value == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found!" });
             }
 
             return View(value);
@@ -76,14 +78,14 @@ namespace sales_web_mvc.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided!" });
             }
 
             var value = _service.FinById(id.Value);
 
             if (value == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found!" });
             }
 
             return View(value);
@@ -93,14 +95,14 @@ namespace sales_web_mvc.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided!" });
             }
 
             var value = _service.FinById(id.Value);
 
             if (value == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found!" });
             }
 
             List<Department> departments = _departmentService.FindAll();
@@ -119,7 +121,7 @@ namespace sales_web_mvc.Controllers
         {
             if (id != seller.Id)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = "Id mismatch" });
             }
 
             try
@@ -129,15 +131,25 @@ namespace sales_web_mvc.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            catch (NotFoundException)
+            catch (NotFoundException e)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
 
-            catch (DbConcurrencyException)
+            catch (DbConcurrencyException e)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel();
+
+            viewModel.Message = message;
+            viewModel.RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+
+            return View(viewModel);
         }
     }
 }
