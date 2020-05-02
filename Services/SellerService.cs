@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using sales_web_mvc.Models;
 using sales_web_mvc.Models.Data;
 
@@ -28,7 +29,7 @@ namespace sales_web_mvc.Services
 
         public Seller FinById(int id)
         {
-            return _context.Sellers.FirstOrDefault(x => x.Id == id);
+            return _context.Sellers.Include(obj => obj.Department).FirstOrDefault(x => x.Id == id); //EagerLoading
         }
 
         public void Remove(int id)
