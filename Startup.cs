@@ -61,7 +61,7 @@ namespace SalesWeb
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Dashboards}/{action=Index}/{id?}");
             });
         }
     }
