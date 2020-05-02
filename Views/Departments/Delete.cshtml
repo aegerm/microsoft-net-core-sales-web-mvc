@@ -4,16 +4,16 @@
     ViewData["Title"] = "Delete";
 }
 
-<h3>Delete</h3>
-
-<h3>Você deseja realmente excluir esse registro</h3>
-
+<br />
+<div class="alert alert-danger" role="alert">
+  Deseja excluir o departamento @Html.DisplayFor(model => model.Name)?
+</div>
+<h3>Informações</h3>
+<hr />
 <div>
-    <h4>Departamento</h4>
-    <hr />
     <dl>
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Nome
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Name)
@@ -22,8 +22,8 @@
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-default" />
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a class="btn btn-primary" asp-action="Index">Cancelar</a>
     </form>
 </div>
 
