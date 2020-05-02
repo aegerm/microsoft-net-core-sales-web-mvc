@@ -1,0 +1,40 @@
+@model sales_web_mvc.Models.Seller
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br />
+<h3>Cadastrar Vendedor</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Nome</label>
+                <input asp-for="Name" class="form-control" placeholder="Nome Vendedor" required>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Email</label>
+                <input asp-for="Email" class="form-control" placeholder="Email" required>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label">Data Nascimento</label>
+                <input asp-for="BirthDate" class="form-control" placeholder="Data Nascimento" required>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BaseSalary" class="control-label">Salário</label>
+                <input asp-for="BaseSalary" class="form-control" placeholder="Salário" required>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-success">
+                <a class="btn btn-primary" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>

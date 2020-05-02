@@ -19,7 +19,7 @@ namespace sales_web_mvc.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Departments.ToListAsync());
+            return View(await _context.Departments.OrderBy(item => item.Id).ToListAsync());
         }
 
         public async Task<IActionResult> Details(int? id)

@@ -1,0 +1,61 @@
+@model IEnumerable<sales_web_mvc.Models.Seller>
+
+@{
+    ViewData["Title"] = "Sellers";
+}
+
+<br />
+<h3>Vendedores</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">
+                #
+            </th>
+            <th>
+                Nome do Vendedor
+            </th>
+            <th>
+                E-mail
+            </th>
+            <th>
+                Salário
+            </th>
+            <th>
+                Data de Nascimento
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BaseSalary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-Id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-Id="@item.Id">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-Id="@item.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<hr />
+<p>
+    <a class="btn btn-secondary" asp-action="Create">Novo Vendedor</a>
+</p>
