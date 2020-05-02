@@ -5,12 +5,12 @@
 }
 
 <br />
-<h3>Cadastrar Vendedor</h3>
+<h3>Editar Vendedor</h3>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Seller.Id" />
             <div class="form-group">
                 <label asp-for="Seller.Name" class="control-label">Nome</label>
                 <input asp-for="Seller.Name" class="form-control" placeholder="Nome Vendedor" required>
@@ -33,7 +33,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Criar" class="btn btn-success">
+                <input type="submit" value="Salvar" class="btn btn-success">
                 <a class="btn btn-primary" asp-action="Index">Voltar</a>
             </div>
         </form>
