@@ -30,7 +30,9 @@ namespace SalesWeb
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddDbContext<SalesWebContext>(options => options.UseNpgsql(Configuration.GetConnectionString("SalesWebContext"), builder => builder.MigrationsAssembly("SalesWeb")));
             services.AddControllersWithViews();
+            
             services.AddScoped<SellerService>();
+            services.AddScoped<DepartmentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,12 +42,14 @@ namespace SalesWeb
             {
                 app.UseDeveloperExceptionPage();
             }
+
             else
             {
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

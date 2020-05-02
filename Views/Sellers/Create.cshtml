@@ -1,4 +1,4 @@
-@model sales_web_mvc.Models.Seller
+@model sales_web_mvc.Models.ViewModels.SellerFormViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -12,24 +12,25 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label">Nome</label>
-                <input asp-for="Name" class="form-control" placeholder="Nome Vendedor" required>
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Seller.Name" class="control-label">Nome</label>
+                <input asp-for="Seller.Name" class="form-control" placeholder="Nome Vendedor" required>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label">Email</label>
-                <input asp-for="Email" class="form-control" placeholder="Email" required>
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Seller.Email" class="control-label">Email</label>
+                <input asp-for="Seller.Email" class="form-control" placeholder="Email" required>
             </div>
             <div class="form-group">
-                <label asp-for="BirthDate" class="control-label">Data Nascimento</label>
-                <input asp-for="BirthDate" class="form-control" placeholder="Data Nascimento" required>
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Seller.BirthDate" class="control-label">Data Nascimento</label>
+                <input asp-for="Seller.BirthDate" class="form-control" placeholder="Data Nascimento" required>
             </div>
             <div class="form-group">
-                <label asp-for="BaseSalary" class="control-label">Salário</label>
-                <input asp-for="BaseSalary" class="form-control" placeholder="Salário" required>
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Seller.BaseSalary" class="control-label">Salário</label>
+                <input asp-for="Seller.BaseSalary" class="form-control" placeholder="Salário" required>
+            </div>
+            <div class="form-group">
+                <label asp-for="Seller.DepartmentId" class="control-label">Departamento</label>
+                <select asp-for="Seller.DepartmentId" asp-items="@(new SelectList(Model.Departments, "Id", "Name"))" class="form-control">
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-success">
