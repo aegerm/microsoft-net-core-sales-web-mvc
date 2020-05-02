@@ -109,7 +109,7 @@ namespace sales_web_mvc.Controllers
                 }
             }
 
-            return View(department);
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Delete(int? id)

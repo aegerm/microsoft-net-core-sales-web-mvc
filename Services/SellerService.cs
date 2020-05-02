@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using sales_web_mvc.Models;
 using sales_web_mvc.Models.Data;
@@ -16,35 +17,45 @@ namespace sales_web_mvc.Services
             _context = context;
         }
 
-        public List<Seller> FindAll()
+        public async Task<List<Seller>> FindAllAsync()
         {
-            return _context.Sellers.ToList();
+            return await _context.Sellers.ToListAsync();
         }
 
-        public void Insert(Seller seller)
+        public async Task InsertAsync(Seller seller)
         {
             _context.Sellers.Add(seller);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public Seller FinById(int id)
+        public async Task<Seller> FinByIdAsync(int id)
         {
-            return _context.Sellers.Include(obj => obj.Department).FirstOrDefault(x => x.Id == id); //EagerLoading
+            return await _context.Sellers.Include(obj => obj.Department).FirstOrDefaultAsync(x => x.Id == id); //EagerLoading
         }
 
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            var value = _context.Sellers.Find(id);
+            try
+            {
+                var value = await _context.Sellers.FindAsync(id);
 
-            _context.Sellers.Remove(value);
+                _context.Sellers.Remove(value);
 
-            _context.SaveChanges();
+                await _context.SaveChangesAsync();
+            }
+            
+            catch (DbUpdateException e)
+            {
+                throw new IntegrityException(e.Message);
+            }
         }
 
-        public void Update(Seller seller)
+        public async Task UpdateAsync(Seller seller)
         {
-            if (!_context.Sellers.Any(x => x.Id == seller.Id))
+            bool hasAny = await _context.Sellers.AnyAsync(x => x.Id == seller.Id);
+
+            if (! hasAny)
             {
                 throw new NotFoundException("Id not found!");
             }
@@ -53,7 +64,7 @@ namespace sales_web_mvc.Services
             {
                 _context.Update(seller);
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
             catch (DbUpdateConcurrencyException e)
