@@ -22,6 +22,21 @@ namespace sales_web_mvc.Services
         public void Insert(Seller seller)
         {
             _context.Sellers.Add(seller);
+
+            _context.SaveChanges();
+        }
+
+        public Seller FinById(int id)
+        {
+            return _context.Sellers.FirstOrDefault(x => x.Id == id);
+        }
+
+        public void Remove(int id)
+        {
+            var value = _context.Sellers.Find(id);
+
+            _context.Sellers.Remove(value);
+
             _context.SaveChanges();
         }
     }

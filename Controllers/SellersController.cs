@@ -43,5 +43,31 @@ namespace sales_web_mvc.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var value = _service.FinById(id.Value);
+
+            if (value == null)
+            {
+                return NotFound();
+            }
+
+            return View(value);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            _service.Remove(id);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
