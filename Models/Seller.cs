@@ -14,7 +14,7 @@ namespace sales_web_mvc.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "{0} Obrigatório")]
-        [EmailAddress(ErrorMessage = "Entre com um E-mail válido!")]
+        [EmailAddress(ErrorMessage = "Entre com um e-mail válido!")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 

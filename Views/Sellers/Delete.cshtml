@@ -1,7 +1,7 @@
 @model sales_web_mvc.Models.Seller
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Detalhes";
 }
 
 <br />
@@ -9,7 +9,7 @@
 <div class="alert alert-danger" role="alert">
     Deseja excluir o vendedor @Html.DisplayFor(model => model.Name)?
 </div>
-<h3>Informações</h3>
+<h3>@ViewData["Title"]</h3>
 <hr />
 <div>
     <dl>

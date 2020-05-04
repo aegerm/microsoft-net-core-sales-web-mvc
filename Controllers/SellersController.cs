@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using sales_web_mvc.Models;
 using sales_web_mvc.Models.ViewModels;
 using sales_web_mvc.Services;
