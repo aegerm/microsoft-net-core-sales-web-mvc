@@ -1,15 +1,23 @@
-# Sales-Web-MVC
+## Projeto - Sales-Web-MVC
 
-# Funcionalidade
-Sistema desenvolvido em curso de Asp Net Core 3.1, utilizando Template Engine.
-O objetivo do sistema é manter vendedores registrados em uma base de dados, departamentos,
-vendas realizadas pelos vendedores e por último, relatórios de vendas de determinados períodos.
-
-# Tecnologias Aplicadas
+### Iniciando
 - AspNet Core
 - MVC
-- Banco de Dados Postgres
+- .NetCore 3.1 SDK
 - C#
-- NetCore 3.1
-- Bootstrap
-- VsCode
+- EntityFramework Core
+- PostgreSQL
+- Visual Studio Code + Extenção C#
+- Template Engine
+- Bootstrap 4
+
+### Execução do projeto
+- Para execução do projeto deve ser realizado uma migration para criação e população do banco de dados. Execute o comando:
+- ***dotnet ef migrations add InitialCreate***
+- Para atualizar o banco de dados utilize o comando ***dotnet ef database update***
+- Execute a aplicação com o comando ***dotnet run***
+- No terminal será apresentado o link de acesso ao sistema
+
+### Documentação utilizada no desenvolvimento
+- https://docs.microsoft.com/pt-br/dotnet/core/
+- https://docs.microsoft.com/pt-br/ef/core/
